@@ -1,0 +1,133 @@
+<mvc:View
+	controllerName="com.sap.customapp.project1.controller.Resume"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<VBox class="sapUiSmallMargin">
+		<f:Form editable="false">
+			<f:title>
+				<core:Title text="{i18n>ResCmd}"/>
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false"
+				/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="Resto">
+							<f:fields>
+								<Text text="{ResumeModel>/0/Resto}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Adresse Resto">
+							<f:fields>
+								<Text text="{ResumeModel>/0/RestoAdress}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Numéro commande">
+							<f:fields>
+								<Text text="{ResumeModel>/0/NumeroCommande}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Taille Tacos">
+							<f:fields>
+								<Text text="{TailleTacosModel>/SelectedTacos}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Sauces">
+							<f:fields>
+								
+								<FlexBox direction="Column" fitContainer="true" alignItems="Start" justifyContent="Start" items="{SauceModel>/}">
+									<HBox visible="{SauceModel>selectedVal}">
+									<GenericTag  text="{SauceModel>sauce}"  class="sapUiSmallMarginBottom" />
+									</HBox>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Viandes">
+							<f:fields>
+								<List
+									visible="false"
+									class="sapUiLargeMarginBottom"
+									id="viandelist"
+									items="{
+									path: 'ViandeModel>/'
+													}"
+								>
+									<StandardListItem title="{ViandeModel>viande}"/>
+								</List>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Supplement">
+							<f:fields>
+								<List
+									visible="false"
+									class="sapUiLargeMarginBottom"
+									id="supplementList"
+									items="{
+									path: 'SuppModel>/'
+													}"
+								>
+									<StandardListItem title="{SuppModel>supp}"/>
+								</List>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Boisson">
+							<f:fields>
+								<FlexBox
+									items="{BoissonModel>/}"
+									direction="Column"
+									alignItems="Start"
+								>
+								<HBox visible="{=${BoissonModel>qte} ===  0 ? false : true}" class="sapUiSmallMarginBottom">
+									<Text text="{parts : ['BoissonModel>boisson' , 'BoissonModel>qte' ,'BoissonModel>totalPrice' ] , 
+									formatter : '.formatter.BoissonResume'	
+									}"></Text>
+
+									
+								</HBox>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Prix Total">
+							<f:fields>
+								<ObjectNumber
+									class="sapUiSmallMarginBottom sapMObjectNumberLarge"
+									inverted="true"
+									number="{parts : ['orderPrice>/tacosPrice' , 'orderPrice>/supplementPrice' ,'orderPrice>/boissonPrice' ] , 
+								formatter : '.formatter.TotalPrice'	
+								}"
+									unit="EUR"
+									state="Success"
+								/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		
+	</VBox>
+	
+</mvc:View>

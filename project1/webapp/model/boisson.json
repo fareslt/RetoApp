@@ -1,0 +1,64 @@
+[{
+    "id": "1",
+    "boisson": "coka",
+    "image": "../images/coka.jpg",
+    "qte" : 0,
+    "price" : 2,
+    "totalPrice" : 0
+}, 
+{
+    "id": "2",
+    "boisson": "sprite",
+    "image": "../images/sprite.jpg",
+    "qte" : 0,
+    "price" : 2,
+    "totalPrice" : 0
+}, 
+{
+    "id": "3",
+    "boisson": "orangina",
+    "image": "../images/orangina.jpg",
+    "qte" : 0,
+    "price" : 2,
+    "totalPrice" : 0
+}, 
+{
+    "id": "4",
+    "boisson": "Fanta",
+    "image": "../images/fanta.jpg",
+    "qte" : 0,
+    "price" : 2,
+    "totalPrice" : 0
+}, 
+{
+    "id": "5",
+    "boisson": "eau",
+    "image": "../images/eau.jpg",
+    "qte" : 0,
+    "price" : 1,
+    "totalPrice" : 0
+}, 
+{
+    "id": "6",
+    "boisson": "Tropicana",
+    "image": "../images/Jusorange.jpg",
+    "qte" : 0,
+    "price" : 3,
+    "totalPrice" : 0
+}, 
+{
+    "id": "7",
+    "boisson": "Biére",
+    "image": "../images/biere.jpg",
+    "qte" : 0,
+    "price" : 3,
+    "totalPrice" : 0
+}, 
+{
+    "id": "8",
+    "boisson": "Boga",
+    "image": "../images/boga.jpg",
+    "qte" : 0,
+    "price" : 3,
+    "totalPrice" : 0
+}]

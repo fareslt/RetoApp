@@ -1,0 +1,32 @@
+<mvc:View
+	controllerName="com.sap.customapp.project1.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+>
+	<Shell>
+		<App id="app">
+			<pages>
+				<Page
+					title="{i18n>title}"
+				  >
+					<content>
+						<layout:Grid containerQuery="true" defaultSpan="XL12 L12 M12 S12" width="100%">
+							<layout:VerticalLayout width="100%" class="gridWrapper">
+							  <FlexBox alignItems="Center" alignContent="Center" direction="Row" renderType="Bare" wrap="Wrap" width="100%" displayInline="true" fitContainer="true" items="{ChoiseModel>/items}">
+								<items>
+									<GenericTile headerImage="{ChoiseModel>icon}" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{ChoiseModel>text}" subheader="{ChoiseModel>fee}" press="onTilePress">
+										<TileContent footer="{= ${ChoiseModel>Availability} === 0 ? ${i18n>NotAct} : ${i18n>Act} }">	
+										</TileContent>
+									</GenericTile>
+								</items>
+							</FlexBox>
+						</layout:VerticalLayout>
+					</layout:Grid>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

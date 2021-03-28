@@ -1,0 +1,146 @@
+<mvc:View controllerName="com.sap.customapp.project1.controller.OrderBurger" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout" xmlns:ux="sap.uxap" xmlns:form="sap.ui.layout.form" xmlns:wt="com.sap.customapp.project1.control" xmlns:pr="com.sap.customapp.project1.control" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" displayBlock="true" height="100%" busyIndicatorDelay="0">
+	<NavContainer id="wizardNavContainer">
+		<pages>
+			<Page id="wizardContentPage" showHeader="false">
+				<content>
+					<Wizard icon="{WizardStepsModel>/aaap/0/step1/icon}" id="step1" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" enableBranching="true">
+						<WizardStep id="ProductTypeStep" title="{WizardStepsModel>/aaap/0/step1/stepText}" nextStep="step2" icon="{WizardStepsModel>/aaap/0/step1/icon}">
+							<f:GridList id="taillechoix" headerText="{i18n>tailleTacos}">
+								<f:GridListItem>
+									<VBox class="sapUiSmallMargin">
+										<layoutData>
+											<FlexItemData growFactor="1" shrinkFactor="0" />
+										</layoutData>
+										<RadioButtonGroup select="fireOnSelect" id="rbg4" buttons="{TailleTacosModel>/Sizes}">
+											<RadioButton selected="{TailleTacosModel>selected}" text="{TailleTacosModel>text}" />
+										</RadioButtonGroup>
+									</VBox>
+								</f:GridListItem>
+							</f:GridList>
+							<f:GridList id="sauceTacos" headerText="{i18n>sauceTacos}">
+								<f:GridListItem>
+									<Title id="WrappingTitle" wrapping="true" class="sapUiSmallMargin" text="Sauce (Max deux sauces) " />
+									<VBox items="{SauceModel>/}" class="sapUiSmallMargin">
+										<layoutData>
+											<FlexItemData growFactor="1" shrinkFactor="0" />
+										</layoutData>
+										<CheckBox enabled="{SauceModel>enabledChk}" select="onSelectSauce" text="{SauceModel>sauce}" selected="{SauceModel>selectedVal}"></CheckBox>
+									</VBox>
+								</f:GridListItem>
+								<f:GridListItem>
+									<Title id="WrappingTitle1" wrapping="true" class="sapUiSmallMargin" text="Viandes" />
+									<VBox items="{ViandeModel>/}" class="sapUiSmallMargin">
+										<layoutData>
+											<FlexItemData growFactor="1" shrinkFactor="0" />
+										</layoutData>
+										<CheckBox text="{ViandeModel>viande}" enabled="{ViandeModel>enabledChk}" select="onSelectViande" selected="{ViandeModel>selectedVal}"></CheckBox>
+									</VBox>
+								</f:GridListItem>
+							</f:GridList>
+							<f:GridList headerText="{i18n>accomp}">
+								<f:GridListItem>
+									<VBox items="{SuppModel>/}" class="sapUiSmallMargin">
+										<layoutData>
+											<FlexItemData growFactor="1" shrinkFactor="0" />
+										</layoutData>
+										<CheckBox selected="{SuppModel>selectedVal}" select="onSelectSupp" text="{parts : ['SuppModel>supp' , 'SuppModel>price' ] , 
+																formatter : '.formatter.formatSupp'	
+																}">
+											<customData>
+												<core:CustomData key="price" value="{SuppModel>price}" />
+											</customData>
+										</CheckBox>
+									</VBox>
+								</f:GridListItem>
+							</f:GridList>
+						</WizardStep>
+						<WizardStep icon="{WizardStepsModel>/aaap/0/step3/icon}" id="step2" nextStep="step3" validated="true" title="{WizardStepsModel>/aaap/0/step2/stepText}" complete="OnConfirmPO" activate="additionalInfoValidation">
+							<List id="boissonList" headerText="Boissons" items="{
+								path: 'BoissonModel>/',
+								sorter: {
+									path: 'Name'
+								}
+							}">
+								<items>
+									<CustomListItem>
+										<HBox class="sapUiTinyMargin" justifyContent="SpaceBetween" alignItems="Center">
+											<VBox class="sapUiSmallMarginEnd">
+												<Image src="{BoissonModel>image}" width="100px"></Image>
+											</VBox>
+											<VBox class="sapUiSmallMarginEnd">
+												<Label width="80px" text="{BoissonModel>boisson}" wrapping="true" />
+											</VBox>
+											<VBox>
+												<u:Currency value="{BoissonModel>price}" currency="€" useSymbol="false" />
+											</VBox>
+											<VBox>
+												<wt:CustomInput value="{BoissonModel>qte}" changeValue="onChangeStep" maxValue="5"></wt:CustomInput>
+											</VBox>
+										</HBox>
+									</CustomListItem>
+								</items>
+							</List>
+						</WizardStep>
+						<WizardStep icon="{WizardStepsModel>/aaap/0/step3/icon}" id="step3" nextStep="step4" validated="true" title="{WizardStepsModel>/aaap/0/step3/stepText}" activate="additionalInfoValidation">
+							<content>
+								<mvc:XMLView viewName="com.sap.customapp.project1.view.Resume" />
+							</content>
+						</WizardStep>
+						<WizardStep icon="{WizardStepsModel>/aaap/0/step4/icon}" id="step4" complete="goToPaymentStep" validated="true" subsequentSteps="CreditCardStep, BankAccountStep, CashOnDeliveryStep" title="{WizardStepsModel>/aaap/0/step4/stepText}">
+							<HBox alignItems="Center" justifyContent="Center" width="100%">
+								<SegmentedButton selectionChange="setPaymentMethod" id="paymentMethodSelection" selectedKey="{SelectedPaymentStep>/selectedMode}">
+									<items>
+										<SegmentedButtonItem width="50%" key="Credit Card" icon="sap-icon://credit-card" text="Credit card" />
+										<SegmentedButtonItem width="50%" key="Bitcoin" icon="sap-icon://official-service" text="Bitcoin" />
+										<SegmentedButtonItem width="50%" key="Cash on Delivery" icon="sap-icon://money-bills" text="Cash on delivery" />
+									</items>
+								</SegmentedButton>
+							</HBox>
+						</WizardStep>
+						<WizardStep id="CreditCardStep" title="Credit card info" nextStep="BillingStep" activate="checkCreditCardStep" icon="sap-icon://credit-card">
+							<MessageStrip text="Enter at least 3 symbols for credit card name." />
+							<form:SimpleForm editable="true">
+								<Label text="Name on card" required="true" />
+								<Input value="{/CreditCard/Name}" liveChange="checkCreditCardStep" valueLiveUpdate="true" />
+								<Label text="Card number" />
+								<Input value="{/CardNumber}" />
+								<Label text="Security code" />
+								<Input value="{/CreditCard/SecurityCode}" />
+								<Label text="Expiration date" />
+								<DatePicker value="{/CreditCard/Expire}" />
+							</form:SimpleForm>
+						</WizardStep>
+						<WizardStep id="BankAccountStep" title="Beneficial bank info" nextStep="BillingStep" icon="sap-icon://official-service">
+							<Text class="sapUiLargeMargin" text="Scan the QR Code and pay your order : "></Text>
+							<VBox justifyContent="Center">
+								<Image src="../images/unitag.png" ariaHasPopup="HasPopup"></Image>
+							</VBox>
+						</WizardStep>
+						<WizardStep id="CashOnDeliveryStep" title="Beneficial bank info" nextStep="BillingStep" icon="sap-icon://official-service">
+							<Panel>
+								<headerToolbar>
+									<Toolbar height="0rem">
+										<Title text="" />
+									</Toolbar>
+								</headerToolbar>
+								<l:Grid defaultSpan="L6 M6 S10" hSpacing="2">
+									<Label text="Beneficiary Name" design="Bold" />
+									<Label text="Singapore Hardware e-Commerce LTD" />
+									<Label text="Beneficiary Bank" design="Bold" />
+									<Label text="CITY BANK, SINGAPORE BRANCH" />
+									<Label text="Beneficiary Account Number" design="Bold" />
+									<Label text="06110702027218" />
+									<Label text="Bank Phone Number" design="Bold" />
+									<Label text="+65-6224-2622" />
+									<Label text="Bank Email Address" design="Bold" />
+									<Label text="customerservice@citybank.com" />
+								</l:Grid>
+							</Panel>
+						</WizardStep>
+						<WizardStep icon="sap-icon://travel-expense-report" id="BillingStep"></WizardStep>
+					</Wizard>
+				</content>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

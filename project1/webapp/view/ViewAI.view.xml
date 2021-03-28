@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="com.sap.customapp.project1.controller.ViewAI"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Page
+		title="{i18n>detailPageTitle}"
+		showNavButton="true"	
+		navButtonPress=".onNavBack">
+		<Toolbar class="sapUiMediumMarginTop" id="toolbar1">
+			<ToolbarSpacer/>
+			<SearchField search="onSearch" width="65%" placeholder="{i18n>searchtext}"/>
+			<ToolbarSpacer/>
+			<Switch state="false"  customTextOff="All" customTextOn="OPEN" change="onSwitchChange">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Switch>	
+		</Toolbar>
+		<List
+		id= "ListResto"
+		headerText="{i18n>restoList}"
+		items="{RestoListModel>/}"
+		      
+		growing="true"
+		growingThreshold="20"	  >
+						
+		<StandardListItem
+			title="{RestoListModel>lib}"
+			info="{ 
+				parts: ['RestoListModel>adress' , 'RestoListModel>mail' ],
+				formatter: '.formatter.informationFormatters'
+		    }"
+			press="onPress"
+			description="{RestoListModel>city}"
+			iconDensityAware="true"
+			iconInset="true"
+			icon="sap-icon://functional-location"
+			type="Navigation"/>
+		</List>	
+</Page>		
+
+</mvc:View>

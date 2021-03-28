@@ -1,0 +1,201 @@
+{
+  "_version": "1.1.0",
+  "sap.app": {
+    "id": "com.sap.customapp.project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "",
+    "description": "",
+    "resources": "resources.json",
+    "ach": "ach"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "com.sap.customapp.project1.view.View1",
+      "type": "XML",
+      "async": true,
+      "id": "View1"
+    },
+    "dependencies": {
+      "minUI5Version": "1.66.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.sap.customapp.project1.i18n.i18n"
+        }
+      }, 
+      "ChoiseModel":{
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "RestoListModel" : {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/restoList.json"
+      }, 
+      "WizardStepsModel" : {
+        "type": "sap.ui.model.json.JSONModel",
+         "uri"  : "model/wizardSteps.json"
+      },
+      "SauceModel" :  {
+        "type" : "sap.ui.model.json.JSONModel"
+      },
+      "ViandeModel" : {
+        "type" : "sap.ui.model.json.JSONModel"
+      },
+      "SuppModel" : {
+        "type" : "sap.ui.model.json.JSONModel"
+      }, 
+      "TailleTacosModel" : {
+        "type" : "sap.ui.model.json.JSONModel", 
+        "settings": {
+              "SelectedTacos" : "Taille M",
+              "Sizes" : [
+                {
+                  "text" : "Taille M",
+                  "price" : 5,
+                  "selected": true
+                }, 
+                {
+                  "text" : "Taille L ( + 2 € ) ",
+                  "price" : 7,
+                  "selected": false
+                },
+                {
+                  "text" : "Taille XL ( + 4 € ) ",
+                  "price" : 9,
+                  "selected": false
+                }    
+              ]
+        }
+      },
+      "orderPrice" :  {
+           "type" : "sap.ui.model.json.JSONModel", 
+           "settings" : {
+             "tacosPrice" : 5,
+             "supplementPrice" : 0,
+             "boissonPrice" : 0
+           } 
+      },
+      "BoissonModel" : {
+        "type": "sap.ui.model.json.JSONModel",
+         "uri"  : "model/boisson.json"
+      }, 
+      "ResumeModel" : {
+        "type": "sap.ui.model.json.JSONModel"
+      },
+
+      "SelectedViandeModel" : {
+        "type": "sap.ui.model.json.JSONModel"
+      }, 
+      "SelectedPaymentStep" : {
+        "type" : "sap.ui.model.json.JSONModel" , 
+        "settings": {
+          "selectedMode" :"Bitcoin"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "com.sap.customapp.project1.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": "",
+          "target": ["TargetView1"]
+        },
+        {
+          "name": "ViewAI",
+          "pattern": "ViewAI",
+          "target": ["ViewAI"]
+        },
+        {
+          "name": "OrderBurger",
+          "pattern" :"OrderBurger/{RestoId}",
+          "target" : ["OrderBurger"]
+        }, 
+        {
+          "name" : "Resume",
+          "pattern" : "Resume/{RestoId}",
+          "target" : ["Resume"]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "view1",
+          "viewName": "View1"
+        },
+        "ViewAI": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "viewAI",
+          "viewName": "ViewAI"
+        }, 
+        "OrderBurger" :  {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "orderBurger",
+          "viewLevel": 3,
+          "viewName": "OrderBurger"
+        }, 
+        "Resume" : {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "resume",
+          "viewLevel": 3,
+          "viewName": "Resume"
+        }
+      }
+    }
+  }
+}

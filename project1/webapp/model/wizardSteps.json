@@ -1,0 +1,24 @@
+{
+ "aaap" : 
+[
+{
+"step1" : {
+"stepid" : "1",
+"stepText": "OTACOS",
+"icon" : "sap-icon://meal"
+},
+"step2" :{
+    "stepid" : "2",
+    "stepText": "BOISSON", 
+    "icon" : "sap-icon://basket"
+},
+"step3": {
+    "stepid" : "3",
+    "stepText": "RESUME",
+    "icon" : "sap-icon://cart-3"
+}, 
+"step4" : {
+    "stepid" : "4",
+    "stepText": "PAYEMENT",
+    "icon" : "sap-icon://money-bills"
+}}]}
