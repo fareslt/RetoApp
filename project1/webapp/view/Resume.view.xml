@@ -113,6 +113,7 @@
 						<f:FormElement label="Prix Total">
 							<f:fields>
 								<ObjectNumber
+								   
 									class="sapUiSmallMarginBottom sapMObjectNumberLarge"
 									inverted="true"
 									number="{parts : ['orderPrice>/tacosPrice' , 'orderPrice>/supplementPrice' ,'orderPrice>/boissonPrice' ] , 

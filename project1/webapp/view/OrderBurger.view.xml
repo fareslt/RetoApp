@@ -3,7 +3,46 @@
 		<pages>
 			<Page id="wizardContentPage" showHeader="false">
 				<content>
-					<Wizard icon="{WizardStepsModel>/aaap/0/step1/icon}" id="step1" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" enableBranching="true">
+				<ScrollContainer>
+					<ObjectHeader
+						id="oh1"
+						responsive="true"
+						intro="Resto : {RestoListModel>lib}"
+						title="{RestoListModel>adress}"
+						number="{parts : ['orderPrice>/tacosPrice' , 'orderPrice>/supplementPrice' ,'orderPrice>/boissonPrice' ] , 
+							formatter : '.formatter.TotalPrice'	
+							}"
+						numberUnit="€"
+						numberState="Success"
+						backgroundDesign="Translucent"
+					>
+						<attributes>
+							<ObjectAttribute
+								title="city "
+								text="{RestoListModel>city}"
+							/>
+							<ObjectAttribute
+								title="mail "
+								text="{RestoListModel>mail}"
+							/>
+						</attributes>
+						<statuses>
+							<ObjectStatus
+								title="Approval"
+								text="{WizardStepsModel>/0/stepText}"
+								state="Warning"
+							/>
+						</statuses>
+						<headerContainer>
+							<HeaderContainer
+								scrollStep="200"
+								id="headerContainer"
+							>
+							</HeaderContainer>
+						</headerContainer>
+					</ObjectHeader>
+					<Wizard 
+					icon="{WizardStepsModel>/aaap/0/step1/icon}" id="step1" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" enableBranching="true">
 						<WizardStep id="ProductTypeStep" title="{WizardStepsModel>/aaap/0/step1/stepText}" nextStep="step2" icon="{WizardStepsModel>/aaap/0/step1/icon}">
 							<f:GridList id="taillechoix" headerText="{i18n>tailleTacos}">
 								<f:GridListItem>
@@ -113,7 +152,7 @@
 						<WizardStep id="BankAccountStep" title="Beneficial bank info" nextStep="BillingStep" icon="sap-icon://official-service">
 							<Text class="sapUiLargeMargin" text="Scan the QR Code and pay your order : "></Text>
 							<VBox justifyContent="Center">
-								<Image src="../images/unitag.png" ariaHasPopup="HasPopup"></Image>
+								<core:HTML id="idHTMLContent" content='&lt;div id="qrcode"&gt;&lt;/div&gt;'> </core:HTML>															
 							</VBox>
 						</WizardStep>
 						<WizardStep id="CashOnDeliveryStep" title="Beneficial bank info" nextStep="BillingStep" icon="sap-icon://official-service">
@@ -139,6 +178,7 @@
 						</WizardStep>
 						<WizardStep icon="sap-icon://travel-expense-report" id="BillingStep"></WizardStep>
 					</Wizard>
+				</ScrollContainer>
 				</content>
 			</Page>
 		</pages>

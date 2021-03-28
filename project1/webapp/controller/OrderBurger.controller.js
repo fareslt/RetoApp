@@ -1,12 +1,14 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "com/sap/customapp/project1/model/formatter",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox", 
+    "com/sap/customapp/project1/library/qrcode"
     
 ], function(
 	Controller,
     formatter,
-    MessageBox
+    MessageBox,
+    qrcode
 ) {
 	"use strict";
     var history = {
@@ -380,10 +382,18 @@ sap.ui.define([
                 "Boisson" : [],  
                 "PrixTotale" : this.calculerPrixTotal()
             }]; 
+             
              this.getOwnerComponent().getModel("ResumeModel").setData(resume);
-
+             this.onGenerateCode();
              //var oEventBus = sap.ui.getCore().getEventBus();
 			 //oEventBus.publish("OrderBurgerView", "filterList");
+        },
+        onGenerateCode : function() {
+            var qrcodeVar = new QRCode(document.getElementById("qrcode") , {
+                width : 100,
+                height : 100
+            });
+            qrcodeVar.makeCode(" My order price is  " + this.calculerPrixTotal() + " € " );
         }
 	});
 });
