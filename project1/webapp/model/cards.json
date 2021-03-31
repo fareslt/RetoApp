@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "cardType": "AMEX",
+        "imageLink": "../images/paycards/amex.jpg"
+    },
+    {
+        "id": 2,
+        "cardType": "VISA",
+        "imageLink": "../images/paycards/visa.png"
+    },
+    {
+        "id": 3,
+        "cardType": "MASTER",
+        "imageLink": "../images/paycards/master.png"
+    },
+    {
+        "id": 4,
+        "cardType": "ELO",
+        "imageLink": "../images/paycards/elo.png"
+    },
+    {
+        "id": 5,
+        "cardType": "JCB",
+        "imageLink": "../images/paycards/jcb.jpg"
+    },
+    {
+        "id": 6,
+        "cardType": "DINERS",
+        "imageLink": "../images/paycards/diner.png"
+    },
+    {
+        "id": 7,
+        "cardType": "DISCOVERY",
+        "imageLink": "../images/paycards/dicscovery.png"
+    },
+    {
+        "id": 8,
+        "cardType": "HIPERCARD",
+        "imageLink": "../images/paycards/hipercard.png"
+    },
+    {
+        "id": 9,
+        "cardType": "ELECTRON",
+        "imageLink": "../images/paycards/electron.jpg"
+    },
+    {
+        "id": 10,
+        "cardType": "MAESTRO",
+        "imageLink": "../images/paycards/maestro.png"
+    },
+    {
+        "id": 11,
+        "cardType": "DANKORT",
+        "imageLink": "../images/paycards/dankort.png"
+    },
+    {
+        "id": 12,
+        "cardType": "INTERPAYMENT",
+        "imageLink": "../images/paycards/interpay.png"
+    },
+    {
+        "id": 13,
+        "cardType": "UNIONPAY",
+        "imageLink": "../images/paycards/unionpay.png"
+    }
+]

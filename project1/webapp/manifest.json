@@ -75,7 +75,11 @@
       },
       "SuppModel" : {
         "type" : "sap.ui.model.json.JSONModel"
-      }, 
+      },
+      "CardList" : {
+          "type" : "sap.ui.model.json.JSONModel",
+          "uri" : "model/cards.json" 
+      },
       "TailleTacosModel" : {
         "type" : "sap.ui.model.json.JSONModel", 
         "settings": {

@@ -125,7 +125,7 @@
 								<mvc:XMLView viewName="com.sap.customapp.project1.view.Resume" />
 							</content>
 						</WizardStep>
-						<WizardStep icon="{WizardStepsModel>/aaap/0/step4/icon}" id="step4" complete="goToPaymentStep" validated="true" subsequentSteps="CreditCardStep, BankAccountStep, CashOnDeliveryStep" title="{WizardStepsModel>/aaap/0/step4/stepText}">
+						<WizardStep icon="{WizardStepsModel>/aaap/0/step4/icon}" id="step4" activate="testActivation" complete="goToPaymentStep" validated="true" subsequentSteps="CreditCardStep, BankAccountStep, CashOnDeliveryStep" title="{WizardStepsModel>/aaap/0/step4/stepText}">
 							<HBox alignItems="Center" justifyContent="Center" width="100%">
 								<SegmentedButton selectionChange="setPaymentMethod" id="paymentMethodSelection" selectedKey="{SelectedPaymentStep>/selectedMode}">
 									<items>
@@ -138,11 +138,23 @@
 						</WizardStep>
 						<WizardStep id="CreditCardStep" title="Credit card info" nextStep="BillingStep" activate="checkCreditCardStep" icon="sap-icon://credit-card">
 							<MessageStrip text="Enter at least 3 symbols for credit card name." />
-							<form:SimpleForm editable="true">
+							<form:SimpleForm editable="true"
+						>
 								<Label text="Name on card" required="true" />
 								<Input value="{/CreditCard/Name}" liveChange="checkCreditCardStep" valueLiveUpdate="true" />
 								<Label text="Card number" />
-								<Input value="{/CardNumber}" />
+								
+								<MaskInput change="OnChangeCardNbr" mask="9999-9999-9999-9999" placeholderSymbol="_" 
+								  placeholder="Enter credit card number" >
+								
+								</MaskInput>
+								<ImageContent
+							      id="cardBankId"
+								  class=""
+								  description="Logo"
+								  press="press">
+							     </ImageContent>
+								
 								<Label text="Security code" />
 								<Input value="{/CreditCard/SecurityCode}" />
 								<Label text="Expiration date" />
