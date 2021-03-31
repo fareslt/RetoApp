@@ -15,8 +15,7 @@ sap.ui.define([
 			var oEventBus = sap.ui.getCore().getEventBus();
 			oEventBus.subscribe("OrderBurgerView", "filterList", this.filterListViande, this);
 			oEventBus.subscribe("OrderBurgerView", "filterListSauce", this.filterListSauce, this);
-			oEventBus.subscribe("OrderBurgerView", "filterListSupp", this.filterListSupplement, this);
-		
+			oEventBus.subscribe("OrderBurgerView", "filterListSupp", this.filterListSupplement, this)
             
 		}, 
 
